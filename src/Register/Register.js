@@ -3,11 +3,15 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { registerSchema } from './register.schema';
 import './Register.scss';
 import {register} from '../services/user.service'
+import {useHistory} from 'react-router-dom';
 
 function Register() {
+    const history = useHistory();
+
     async function submit(values) {
         try {
             const user = await register(values);
+            history.push('/login');
             console.log(user);
         } catch(e) {
             console.log(e);

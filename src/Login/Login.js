@@ -1,27 +1,29 @@
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { loginSchema } from './login.schema';
-import { login } from '../services/user.service';
+import {loginSchema} from './login.schema'
+import { login, me } from '../services/user.service';
 import { UserContext } from '../App';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
-
-    const {loggedIn, setLoggedIn} = useContext(UserContext);
-    console.log(loggedIn);
+    const history = useHistory();
+    const { setUser } = useContext(UserContext);
 
     async function submit(values) {
         try {
-            const user = await login(values);
-            console.log(user);
-        }   catch (e) {
+            const { token } = await login(values);
+            localStorage.setItem('token', token);
+            const loggedUser = await me();
+            setUser(loggedUser);
+            history.push('/');
+        } catch (e) {
             console.log(e);
         }
     }
-
     return (
         <div className="Register">
-            <h1 className="Register__title">Sign-in</h1>
-            <Formik
+            <h1 className="Register__title">Sign In</h1>
+            <Formik 
                 initialValues={{ username: '', password: '' }}
                 validationSchema={loginSchema}
                 onSubmit={submit}>
@@ -41,12 +43,13 @@ function Login() {
                         </div>
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn-register">Sign-in</button>
+                        <button type="submit" className="btn-register">Sign In</button>
                     </div>
                 </Form>
             </Formik>
         </div>
-    );
+    )
+
 }
 
 export default Login;
