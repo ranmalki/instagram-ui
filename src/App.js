@@ -8,6 +8,7 @@ import Header from './Header/Header';
 import Profile from './Profile/Profile';
 import { me } from './services/user.service';
 import PostCreate from './postCreate/PostCreate';
+import Search from './Search/Search';
 export const UserContext = createContext();
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
                 <Switch>
                     <Route path="/profile/:username">
                         <Profile />
+                    </Route>
+                    <Route path="/search">
+                        <Search />
                     </Route>
                     <Route path="/register">
                         <Register />

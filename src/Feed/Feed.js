@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getFeed } from '../services/post.service';
 import Post from './../common/Post/Post';
 import './Feed.scss';
+
 function Feed() {
 	const [posts, setPosts] = useState([]);
 

@@ -10,7 +10,7 @@ function HeaderProfile() {
 	return (
 		<Link to={`/profile/${user.username}`} >
 			<div className="HeaderProfile">
-				<Avatar image={user.image} />
+				<Avatar image={user.image} size="md"/>
 				<span className="HeaderProfile__username">{user.username}</span>
 			</div>
 		</Link>

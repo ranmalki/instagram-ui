@@ -68,4 +68,15 @@ async function checkUsernameAvailability(username) {
     return isAvailable;
 }
 
-export { register, checkUsernameAvailability, login, me, getUser }
+async function search(query) {
+    const res = await fetch(`${config.apiUrl}/search/user/${query}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+export { register, checkUsernameAvailability, login, me, getUser, search }

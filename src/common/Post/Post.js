@@ -3,14 +3,16 @@ import Avatar from '../Avatar/Avatar';
 import './Post.scss';
 import { Link } from 'react-router-dom';
 import config from '../../config/index';
+import PostDate from './PostDate/PostDate';
 
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function Post({ data }) {
-    const createdAt = useMemo(() => {
+	const createdAt = useMemo(() => {
         const date = new Date(data.createdAt);
-		return months[date.getMonth()] + ' ' + date.getDate();
+        return months[date.getMonth()] + '' + date.getDate();
     }, [data.createdAt]);
+
 
 	return (
 		<div className="Post_wrapper">
@@ -24,7 +26,7 @@ function Post({ data }) {
 						</Link>
 					</div>
 					<div className="Post__date">
-                        {createdAt}
+                        <PostDate date = {data.createdAt} />
 					</div>
 				</header>
 				<div className="Post__image">
