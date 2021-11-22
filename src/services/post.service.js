@@ -35,4 +35,56 @@ async function getPosts(username) {
     return res.json();
 }
 
-export { create, getFeed, getPosts }
+async function postLike(postId) {
+    return fetch(config.apiUrl + '/post/' + postId + '/like', {
+        method: 'POST',
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+
+}
+
+function postUnlike(postId) {
+    return fetch(config.apiUrl + '/post/' + postId + '/unlike', {
+        method: 'POST',
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+}
+
+async function getOnePost(postId) {
+    const res = await fetch(config.apiUrl + '/post/' + postId, {
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+async function getComments(postId) {
+    const res = await fetch(config.apiUrl + '/post/' + postId + '/comment', {
+        method: 'GET',
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+async function createComment(postId, content) {
+    const res = await fetch(config.apiUrl + '/post/' + postId + '/comment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            content
+        })
+    });
+    return res.json();
+}
+
+export { create, getFeed, getPosts, postLike, postUnlike, getOnePost, getComments, createComment  }

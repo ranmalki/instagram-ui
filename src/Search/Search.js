@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from 'react';
 import { search } from "../services/user.service";
 import SearchResult from "./SearchResult/SearchResult";
+import './Search.scss';
 
 function Search() {
 
@@ -20,7 +21,7 @@ function Search() {
 
     return (
         <div>
-            <h1>Search</h1>
+            <h1 className='title'>Search</h1>
             
             <form>
                 <input value={query} onChange={e => setQuery(e.target.value)} />

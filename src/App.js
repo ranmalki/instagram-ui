@@ -9,6 +9,7 @@ import Profile from './Profile/Profile';
 import { me } from './services/user.service';
 import PostCreate from './postCreate/PostCreate';
 import Search from './Search/Search';
+import PostPage from './PostPage/PostPage';
 export const UserContext = createContext();
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
                     </Route>
                     <Route path="/post/create">
                         <PostCreate />
+                    </Route>
+                    <Route path="/post/:id">
+                        <PostPage />
                     </Route>
                     <Route exact path="/">
                         <Feed />
